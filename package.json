@@ -1,0 +1,35 @@
+{
+  "name": "gemini-gui",
+  "version": "0.1.0",
+  "description": "GUI for gemini testing utility",
+  "main": "lib/index.js",
+  "bin": {
+    "gemini-gui": "./bin/gemini-gui"
+  },
+  "scripts": {
+    "build-client": "browserify lib/client -t hbsfy -o ./lib/static/client.js",
+    "watch": "watchify lib/client --debug -t hbsfy -o ./lib/static/client.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.8.1",
+    "coa": "^0.4.1",
+    "express": "^4.8.6",
+    "express-handlebars": "^1.0.3",
+    "handlebars": "^1.3.0",
+    "hbsfy": "^2.1.0",
+    "opener": "^1.4.0",
+    "q": "^1.0.1",
+    "q-io": "^1.11.4",
+    "temp": "^0.8.1"
+  },
+  "peerDependencies": {
+    "gemini": ""
+  },
+  "devDependencies": {
+    "browserify": "^5.11.1",
+    "gemini": "^0.6.4",
+    "watchify": "^1.0.2"
+  }
+}

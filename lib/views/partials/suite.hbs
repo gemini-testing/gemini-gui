@@ -1,0 +1,12 @@
+<div class="section section_collapsed" data-suite-id="{{suiteId}}">
+    <div class="section__title">{{name}}</div>
+    <div class="section__body section__body_guided">
+        {{#each states}}
+            {{> state this}}
+        {{/each}}
+
+        {{#each children}}
+            {{> suite}}
+        {{/each}}
+    </div>
+</div>

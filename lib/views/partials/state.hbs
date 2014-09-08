@@ -1,0 +1,22 @@
+<div class="section section_collapsed" 
+     data-suite-id="{{suiteId}}"
+     data-state-name="{{stateName}}">
+    <div class="section__title">{{stateName}}</div>
+    <div class="section__body section__body_guided">
+        {{#each browsers}}
+        <div class="section section_collapsed" 
+             data-suite-id="{{suiteId}}"
+             data-state-name="{{stateName}}"
+             data-browser-id="{{browserId}}">
+            <div class="section__title">{{browserId}}</div>
+            <div class="section__body">
+                {{#if skipped}}
+                    {{> skip-result}}
+                {{else}}
+                    {{> success-result}}
+                {{/if}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
