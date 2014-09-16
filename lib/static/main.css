@@ -50,11 +50,15 @@
     outline: 0;
 }
 
-.button:hover {
+.button:disabled {
+    background: #ccc;
+}
+
+.button:hover:enabled {
     border-color: #555;
 }
 
-.button:active {
+.button:active:enabled {
     background: #eee;
 }
 
