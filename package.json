@@ -8,7 +8,8 @@
   },
   "scripts": {
     "build-client": "browserify lib/client -t hbsfy -o ./lib/static/client.js",
-    "watch": "watchify lib/client --debug -t hbsfy -o ./lib/static/client.js"
+    "watch": "watchify lib/client --debug -t hbsfy -o ./lib/static/client.js",
+    "test": "istanbul test _mocha --require ./test/index.js test"
   },
   "author": "Sergey Tatarintsev <sevinf@yandex-team.ru> (https://github.com/SevInf)",
   "license": "MIT",
@@ -19,7 +20,6 @@
     "express": "^4.8.6",
     "express-handlebars": "^1.0.3",
     "handlebars": "^1.3.0",
-    "hbsfy": "^2.1.0",
     "opener": "^1.4.0",
     "q": "^1.0.1",
     "q-io": "^1.11.4",
@@ -29,7 +29,14 @@
   },
   "devDependencies": {
     "browserify": "^5.11.1",
+    "chai": "^1.9.1",
+    "chai-as-promised": "^4.1.1",
     "gemini": "^0.6.4",
+    "hbsfy": "^2.1.0",
+    "istanbul": "^0.3.2",
+    "mocha": "^1.21.4",
+    "sinon": "^1.10.3",
+    "sinon-chai": "^2.5.0",
     "watchify": "^1.0.2"
   },
   "directories": {
