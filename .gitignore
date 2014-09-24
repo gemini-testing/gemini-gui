@@ -19,3 +19,4 @@ node_modules
 coverage
 
 /lib/static/client.js
+/lib/static/client.js.map.json

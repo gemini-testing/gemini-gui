@@ -7,8 +7,7 @@
     "gemini-gui": "./bin/gemini-gui"
   },
   "scripts": {
-    "build-client": "browserify lib/client -t hbsfy -o ./lib/static/client.js",
-    "watch": "watchify lib/client --debug -t hbsfy -o ./lib/static/client.js",
+    "build-client": "browserify lib/client --debug -p [minifyify --compressPath . --map /client.js.map.json --output ./lib/static/client.js.map.json] -t hbsfy -o ./lib/static/client.js",
     "test": "istanbul test _mocha --require ./test/index.js test"
   },
   "author": "Sergey Tatarintsev <sevinf@yandex-team.ru> (https://github.com/SevInf)",
@@ -34,6 +33,7 @@
     "gemini": "^0.6.4",
     "hbsfy": "^2.1.0",
     "istanbul": "^0.3.2",
+    "minifyify": "^4.2.0",
     "mocha": "^1.21.4",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0",
