@@ -48,5 +48,13 @@
     "screenshot",
     "test",
     "testing"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bem/gemini-gui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bem/gemini-gui/issues"
+  },
+  "homepage": "https://github.com/bem/gemini-gui"
 }
