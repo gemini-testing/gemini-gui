@@ -1,5 +1,7 @@
 # Gemini GUI
 
+[![Build Status](https://travis-ci.org/bem/gemini-gui.svg)](https://travis-ci.org/bem/gemini-gui)
+
 GUI for [gemini](https://github.com/bem/gemini) utility.
 
 ![screenshot](assets/screenshot.png "Screenshot")
