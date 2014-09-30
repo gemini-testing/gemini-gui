@@ -2,6 +2,8 @@
 
 GUI for [gemini](https://github.com/bem/gemini) utility.
 
+![screenshot](assets/screenshot.png "Screenshot")
+
 ## Installation
 
 Install globally with `npm`:
@@ -14,7 +16,7 @@ npm i -g gemini-gui
 
 To be able to use `GUI` on a project you must have `gemini` installed
 locally in this project. `GUI` will not work with `gemini` below 
-`TODO: specify first version of gemini with API`.
+`0.8.0`.
 
 Run in the project root:
 
