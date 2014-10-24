@@ -1,6 +1,6 @@
 # Changelog
 
-## Dev
+## 0.1.2 - 2014-10-24
 
 * Work with `gemini` 0.9.x
 
