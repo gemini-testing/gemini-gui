@@ -31,6 +31,7 @@ Web browser with `GUI` loaded will be opened automatically.
 
 * `--config`, `-c` - specify config file to use.
 * `--port`, `-p` - specify port to run `GUI` backend on.
+* `--hostname`, `-h` - specify hostname to run `GUI` backend on.
 * `--root-url`, `-r` - use specified URL, instead of `rootUrl` setting from config file.
 * `--grid-url`, `-g` - use specified URL, instead of `gridUrl` setting from config file.
 * `--screenshots-dir`, `-s` - use specified directory, instead of `screenshotsDir` setting
