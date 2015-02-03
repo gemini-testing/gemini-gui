@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3 - 2015-02-03
+
+* Ability to specify the hostname (@i-akhmadullin).
+
 ## 0.1.2 - 2014-10-24
 
 * Work with `gemini` 0.9.x
