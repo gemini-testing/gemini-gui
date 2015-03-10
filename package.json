@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.8.1",
-    "chalk": "^0.5.1",
+    "chalk": "^1.0.0",
     "coa": "^0.4.1",
     "express": "^4.8.6",
     "express-handlebars": "^1.0.3",
