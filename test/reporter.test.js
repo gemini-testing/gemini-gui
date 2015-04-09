@@ -88,7 +88,7 @@ describe('reporter', function() {
 
     it('should build diff if images are not equal', function() {
         this.app.buildDiff.returns(q());
-        emitToReporter('endTest', {
+        var failureData = {
             suiteId: 1,
             suiteName: 'test',
             stateName: 'state',
@@ -96,9 +96,10 @@ describe('reporter', function() {
             equal: false,
             referencePath: 'ref.png',
             currentPath: 'curr.png'
-        }, this.app);
+        };
+        emitToReporter('endTest', failureData, this.app);
 
-        expect(this.app.buildDiff).to.have.been.calledWith('ref.png', 'curr.png');
+        expect(this.app.buildDiff).to.have.been.calledWith(failureData);
     });
 
     it('should register failure', function() {
