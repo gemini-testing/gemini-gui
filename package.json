@@ -55,10 +55,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bem/gemini-gui.git"
+    "url": "https://github.com/gemini-testing/gemini-gui.git"
   },
   "bugs": {
-    "url": "https://github.com/bem/gemini-gui/issues"
+    "url": "https://github.com/gemini-testing/gemini-gui/issues"
   },
-  "homepage": "https://github.com/bem/gemini-gui"
+  "homepage": "https://github.com/gemini-testing/gemini-gui"
 }
