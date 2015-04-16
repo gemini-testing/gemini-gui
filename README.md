@@ -1,8 +1,8 @@
 # Gemini GUI
 
-[![Build Status](https://travis-ci.org/bem/gemini-gui.svg)](https://travis-ci.org/bem/gemini-gui)
+[![Build Status](https://travis-ci.org/gemini-testing/gemini-gui.svg)](https://travis-ci.org/gemini-testing/gemini-gui)
 
-GUI for [gemini](https://github.com/bem/gemini) utility.
+GUI for [gemini](https://github.com/gemini-testing/gemini) utility.
 
 ![screenshot](assets/screenshot.png "Screenshot")
 
@@ -17,7 +17,7 @@ npm i -g gemini-gui
 ## Running
 
 To be able to use `GUI` on a project you must have `gemini` installed
-locally in this project. `GUI` will not work with `gemini` below 
+locally in this project. `GUI` will not work with `gemini` below
 `0.8.0`.
 
 Run in the project root:
@@ -39,4 +39,4 @@ from config.
 * `--debug` - enable debug mode (verbose logging).
 
 You can also override config file options with environment variables. Use `gemini`
-[documentation](https://github.com/bem/gemini#configuration) for details.
+[documentation](https://github.com/gemini-testing/gemini#configuration) for details.
