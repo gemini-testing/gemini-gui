@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0 - 2015-04-17
+
+* Work with `gemini` 0.10.x (@SevInf).
+* Allow to choose color of background in image boxes (@unlok).
+* Correctly update title colors of a parent nodes when replacing
+  the image (j0tunn).
+
 ## 0.1.3 - 2015-02-03
 
 * Ability to specify the hostname (@i-akhmadullin).
