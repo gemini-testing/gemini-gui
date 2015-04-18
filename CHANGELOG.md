@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 - 2015-04-18
+
+* Work with `gemini` 0.11.x (@SevInf).
+
 ## 0.2.0 - 2015-04-17
 
 * Work with `gemini` 0.10.x (@SevInf).
