@@ -21,4 +21,15 @@ describe('EventSource', function() {
         expect(this.connection.write.secondCall.args[0]).to.equal('data: {"data":"value"}\n');
         expect(this.connection.write.thirdCall.args[0]).to.equal('\n\n');
     });
+
+    it('should handle circular references format', function() {
+        var a = {b: true};
+        a.c = a;
+        this.source.emit('event', a);
+
+        expect(this.connection.write.callCount).to.equal(3);
+        expect(this.connection.write.firstCall.args[0]).to.equal('event: event\n');
+        expect(this.connection.write.secondCall.args[0]).to.equal('data: {"b":true,"c":"[Circular ~]"}\n');
+        expect(this.connection.write.thirdCall.args[0]).to.equal('\n\n');
+    });
 });
