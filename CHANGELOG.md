@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3 - 2015-07-15
+
+* Added fix for circular JSON(@twolfson).
+
 ## 0.2.2 - 2015-05-21
 
 * Work with `gemini` 0.12.x (@SevInf).
