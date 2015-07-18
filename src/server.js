@@ -10,16 +10,17 @@ var path = require('path'),
 exports.start = function(options) {
     var app = new App(options);
     var server = express();
+    var rootDir = path.dirname(__dirname);
     server.engine('.hbs', exphbs({
         extname: '.hbs',
-        partialsDir: path.join(__dirname, 'views', 'partials')
+        partialsDir: path.join(rootDir, 'views', 'partials')
     }));
 
     server.set('view engine', '.hbs');
-    server.set('views', path.join(__dirname, 'views'));
+    server.set('views', path.join(rootDir, 'views'));
 
     server.use(bodyParser.json());
-    server.use(express.static(path.join(__dirname, 'static')));
+    server.use(express.static(path.join(rootDir, 'public')));
     server.use(App.refPrefix, express.static(app.referenceDir));
     server.use(App.currentPrefix, express.static(app.currentDir));
     server.use(App.diffPrefix, express.static(app.diffDir));

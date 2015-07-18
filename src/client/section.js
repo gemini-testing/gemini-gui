@@ -1,8 +1,8 @@
 'use strict';
-var successTemplate = require('../views/partials/success-result.hbs'),
-    failTemplate = require('../views/partials/fail-result.hbs'),
-    errorTemplate = require('../views/partials/error-result.hbs'),
-    skipTemplate = require('../views/partials/skip-result.hbs'),
+var successTemplate = require('../../views/partials/success-result.hbs'),
+    failTemplate = require('../../views/partials/fail-result.hbs'),
+    errorTemplate = require('../../views/partials/error-result.hbs'),
+    skipTemplate = require('../../views/partials/skip-result.hbs'),
     xhr = require('./xhr');
 
 var statusList = [

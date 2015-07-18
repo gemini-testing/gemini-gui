@@ -9,7 +9,7 @@ var SectionList = require('./section-list'),
     filter = Array.prototype.filter,
     hbruntime = require('hbsfy/runtime');
 
-hbruntime.registerPartial('cswitcher', require('../views/partials/cswitcher.hbs'));
+hbruntime.registerPartial('cswitcher', require('../../views/partials/cswitcher.hbs'));
 
 function failAllParents(section) {
     while ((section = sections.findParent(section))) {

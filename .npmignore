@@ -3,5 +3,6 @@
 .jshintignore
 .jshintrc
 .npmignore
+src/
 test/
 assets/

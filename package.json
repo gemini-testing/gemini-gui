@@ -7,14 +7,17 @@
     "gemini-gui": "./bin/gemini-gui"
   },
   "scripts": {
-    "build-client": "browserify lib/client --debug -p [minifyify --compressPath . --map /client.js.map.json --output ./lib/static/client.js.map.json] -t hbsfy -o ./lib/static/client.js",
-    "prepublish": "npm run build-client",
+    "build-client": "browserify src/client --debug -p [minifyify --compressPath . --map /client.js.map.json --output ./public/client.js.map.json] -t hbsfy -t babelify -o ./public/client.js",
+    "build-server": "babel --optional runtime src -d lib",
+    "build": "npm run build-client && npm run build-server",
+    "prepublish": "npm run build",
     "test": "istanbul test _mocha --require ./test/index.js test",
     "lint": "jshint . && jscs ."
   },
   "author": "Sergey Tatarintsev <sevinf@yandex-team.ru> (https://github.com/SevInf)",
   "license": "MIT",
   "dependencies": {
+    "babel-runtime": "^5.7.0",
     "body-parser": "^1.8.1",
     "chalk": "^1.0.0",
     "coa": "^0.4.1",
@@ -30,6 +33,8 @@
     "temp": "^0.8.1"
   },
   "devDependencies": {
+    "babel": "^5.6.23",
+    "babelify": "^6.1.3",
     "browserify": "^5.11.1",
     "chai": "^1.9.1",
     "chai-as-promised": "^4.1.1",
