@@ -5,6 +5,10 @@ var path = require('path'),
     pkg = require('../package.json'),
     server = require('./server');
 
+try {
+    require('source-map-support').install();
+} catch (e) {}
+
 module.exports = require('coa').Cmd()
     .name(process.argv[1])
     .title(pkg.description)

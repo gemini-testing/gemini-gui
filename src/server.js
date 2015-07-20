@@ -3,7 +3,9 @@ var path = require('path'),
     express = require('express'),
     bodyParser = require('body-parser'),
     exphbs  = require('express-handlebars'),
+    React = require('react'),
     q = require('q'),
+    render = require('./components/server-render').render,
 
     App = require('./app');
 
@@ -29,7 +31,8 @@ exports.start = function(options) {
         app.readTests(options.testFiles)
             .then(function(suites) {
                 res.render('main', {
-                    suites: suites
+                    reactOutput: render(suites),
+                    suites: JSON.stringify(suites)
                 });
             })
             .catch(function(e) {

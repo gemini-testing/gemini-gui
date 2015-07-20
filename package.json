@@ -7,7 +7,7 @@
     "gemini-gui": "./bin/gemini-gui"
   },
   "scripts": {
-    "build-client": "browserify src/client --debug -p [minifyify --compressPath . --map /client.js.map.json --output ./public/client.js.map.json] -t hbsfy -t babelify -o ./public/client.js",
+    "build-client": "browserify src/client.jsx -s GeminiGUI -t babelify --extension=.jsx -o ./public/client.js",
     "build-server": "babel --optional runtime src -d lib",
     "build": "npm run build-client && npm run build-server",
     "prepublish": "npm run build",
@@ -20,6 +20,7 @@
     "babel-runtime": "^5.7.0",
     "body-parser": "^1.8.1",
     "chalk": "^1.0.0",
+    "classnames": "^2.1.3",
     "coa": "^0.4.1",
     "express": "^4.8.6",
     "express-handlebars": "^1.0.3",
@@ -28,9 +29,11 @@
     "opener": "^1.4.0",
     "q": "^1.0.1",
     "q-io": "^1.11.4",
+    "react": "^0.13.3",
     "resolve": "^1.0.0",
     "semver": "^3.0.1",
-    "temp": "^0.8.1"
+    "temp": "^0.8.1",
+    "whatwg-fetch": "^0.9.0"
   },
   "devDependencies": {
     "babel": "^5.6.23",
@@ -47,6 +50,7 @@
     "mocha": "^1.21.4",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0",
+    "source-map-support": "^0.3.2",
     "watchify": "^1.0.2"
   },
   "directories": {
