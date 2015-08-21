@@ -27,7 +27,8 @@
     "q-io": "^1.11.4",
     "resolve": "^1.0.0",
     "semver": "^3.0.1",
-    "temp": "^0.8.1"
+    "temp": "^0.8.1",
+    "lodash": "^3.10.1"
   },
   "devDependencies": {
     "browserify": "^5.11.1",
