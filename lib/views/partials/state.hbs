@@ -1,12 +1,12 @@
-<div class="section section_collapsed" 
-     data-suite-id="{{suiteId}}"
-     data-state-name="{{stateName}}">
-    <div class="section__title">{{stateName}}</div>
+<div class="section section_collapsed"
+     data-suite-id="{{suite.id}}"
+     data-state-name="{{state.name}}">
+    <div class="section__title">{{state.name}}</div>
     <div class="section__body section__body_guided">
         {{#each browsers}}
-        <div class="section section_collapsed" 
-             data-suite-id="{{suiteId}}"
-             data-state-name="{{stateName}}"
+        <div class="section section_collapsed"
+             data-suite-id="{{suite.id}}"
+             data-state-name="{{state.name}}"
              data-browser-id="{{browserId}}">
             <div class="section__title">{{browserId}}</div>
             <div class="section__body">
