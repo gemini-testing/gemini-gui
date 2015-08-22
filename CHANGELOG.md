@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0 - 2015-08-22
+
+* Work with `gemini` 0.13.x (@j0tunn).
+
 ## 0.2.3 - 2015-07-15
 
 * Added fix for circular JSON(@twolfson).
@@ -33,5 +37,5 @@
 
 ## 0.1.0 - 2014-09-30
 
-Inital release. It is almost like HTML report, but updates in real-time 
+Inital release. It is almost like HTML report, but updates in real-time
 and allows you to selectively update reference images.
