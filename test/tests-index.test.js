@@ -3,17 +3,17 @@ var TestsIndex = require('../lib/common/tests-index'),
     expect = require('chai').expect,
     data = {
         onlySuite: {
-            suiteId: 1
+            suite: {id: 1}
         },
 
         suiteState: {
-            suiteId: 1,
-            stateName: 'state'
+            suite: {id: 1},
+            state: {name: 'state'}
         },
 
         suiteStateBrowser: {
-            suiteId: 1,
-            stateName: 'state',
+            suite: {id: 1},
+            state: {name: 'state'},
             browserId: 'browser'
         }
     };
@@ -26,7 +26,7 @@ describe('TestsIndex', function() {
     });
 
     describe('add', function() {
-        it('should silently fall if suiteId specified', function() {
+        it('should silently fall if no suite.id specified', function() {
             expect(function() {
                 this.index.add({noSuite: true});
             }.bind(this)).not.to.throw();
@@ -47,15 +47,15 @@ describe('TestsIndex', function() {
         });
 
         it('should return null if suite is not found', function() {
-            expect(this.index.find({suiteId: 2})).to.be.equal(null);
+            expect(this.index.find({suite: {id: 2}})).to.be.equal(null);
         });
 
         it('should return null if state is not found', function() {
-            expect(this.index.find({suiteId: 1, stateName: 'another'})).to.be.equal(null);
+            expect(this.index.find({suite: {id: 1}, state: {name: 'another'}})).to.be.equal(null);
         });
 
         it('should return null if browser is not found', function() {
-            expect(this.index.find({suiteId: 1, stateName: 'state', browserId: 'bro'})).to.be.equal(null);
+            expect(this.index.find({suite: {id: 1}, state: {name: 'state'}, browserId: 'bro'})).to.be.equal(null);
         });
     });
 });

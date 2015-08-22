@@ -28,48 +28,42 @@ describe('reporter', function() {
 
     itShouldProxyEvent('begin', {});
     itShouldProxyEvent('beginSuite', {
-        suiteName: 'test',
-        suiteId: 1,
+        suite: {name: 'test', id: 1},
         browserId: 'bro'
     });
 
     itShouldProxyEvent('beginState', {
-        suiteName: 'test',
-        suiteId: 1,
+        suite: {name: 'test', id: 1},
         browserId: 'bro',
-        stateName: 'state'
+        state: {name: 'state'}
     });
 
     itShouldProxyEvent('skipState', {
-        suiteName: 'test',
-        suiteId: 1,
+        suite: {name: 'test', id: 1},
         browserId: 'bro',
-        stateName: 'state'
+        state: {name: 'state'}
     });
 
     itShouldProxyEvent('endState', {
-        suiteName: 'test',
-        suiteId: 1,
+        suite: {name: 'test', id: 1},
         browserId: 'bro',
-        stateName: 'state'
+        state: {name: 'state'}
     });
 
     itShouldProxyEvent('endSuite', {
-        suiteName: 'test',
-        suiteId: 1,
+        suite: {name: 'test', id: 1},
         browserId: 'bro'
     });
 
     itShouldProxyEvent('end', {});
 
     it('should replace paths with URLs if endTest emitted with equal images', function() {
-        this.app.refPathToURL.withArgs('ref.png').returns('/ref/image.png');
+        this.app.refPathToURL.withArgs('ref.png', 'browser').returns('/ref/browser/image.png');
         this.app.currentPathToURL.withArgs('curr.png').returns('/curr/image.png');
 
         emitToReporter('endTest', {
-            suiteId: 1,
-            suiteName: 'test',
-            stateName: 'state',
+            suite: {id: 1, name: 'test'},
+            state: {name: 'state'},
             browserId: 'browser',
             equal: true,
             referencePath: 'ref.png',
@@ -77,11 +71,11 @@ describe('reporter', function() {
         }, this.app);
 
         expect(this.app.sendClientEvent).to.have.been.calledWith('endTest', {
-            suiteId: 1,
-            stateName: 'state',
+            suite: {id: 1, name: 'test'},
+            state: {name: 'state'},
             browserId: 'browser',
             equal: true,
-            referenceURL: '/ref/image.png',
+            referenceURL: '/ref/browser/image.png',
             currentURL: '/curr/image.png'
         });
     });
@@ -89,9 +83,8 @@ describe('reporter', function() {
     it('should build diff if images are not equal', function() {
         this.app.buildDiff.returns(q());
         var failureData = {
-            suiteId: 1,
-            suiteName: 'test',
-            stateName: 'state',
+            suite: {id: 1, name: 'test'},
+            state: {name: 'state'},
             browserId: 'browser',
             equal: false,
             referencePath: 'ref.png',
@@ -105,9 +98,8 @@ describe('reporter', function() {
     it('should register failure', function() {
         this.app.buildDiff.returns(q());
         emitToReporter('endTest', {
-            suiteId: 1,
-            suiteName: 'test',
-            stateName: 'state',
+            suite: {id: 1, name: 'test'},
+            state: {name: 'state'},
             browserId: 'browser',
             equal: false,
             referencePath: 'ref.png',
@@ -115,8 +107,8 @@ describe('reporter', function() {
         }, this.app);
 
         expect(this.app.addFailedTest).to.have.been.calledWith({
-            suiteId: 1,
-            stateName: 'state',
+            suite: {id: 1, name: 'test'},
+            state: {name: 'state'},
             browserId: 'browser',
             referencePath: 'ref.png',
             currentPath: 'curr.png'
@@ -124,14 +116,13 @@ describe('reporter', function() {
     });
 
     it('should send event with diffURL to the client', function() {
-        this.app.refPathToURL.withArgs('ref.png').returns('/ref/image.png');
+        this.app.refPathToURL.withArgs('ref.png', 'browser').returns('/ref/browser/image.png');
         this.app.currentPathToURL.withArgs('curr.png').returns('/curr/image.png');
         this.app.buildDiff.returns(q('/diff/image.png'));
 
         emitToReporter('endTest', {
-            suiteId: 1,
-            suiteName: 'test',
-            stateName: 'state',
+            suite: {id: 1, name: 'test'},
+            state: {name: 'state'},
             browserId: 'browser',
             equal: false,
             referencePath: 'ref.png',
@@ -141,11 +132,11 @@ describe('reporter', function() {
         var _this = this;
         return q().then(function() {
             expect(_this.app.sendClientEvent).to.have.been.calledWith('endTest', {
-                suiteId: 1,
-                stateName: 'state',
+                suite: {id: 1, name: 'test'},
+                state: {name: 'state'},
                 browserId: 'browser',
                 equal: false,
-                referenceURL: '/ref/image.png',
+                referenceURL: '/ref/browser/image.png',
                 currentURL: '/curr/image.png',
                 diffURL: '/diff/image.png'
             });
@@ -154,17 +145,16 @@ describe('reporter', function() {
 
     it('should report error stack', function() {
         var error = new Error('example');
-        error.suiteId = 1;
+        error.suite = {id: 1};
         error.browserId = 'browser';
-        error.stateName = 'state';
+        error.state = {name: 'state'};
 
         emitToReporter('error', error, this.app);
         expect(this.app.sendClientEvent).to.have.been.calledWith('error', {
-            suiteId: 1,
-            stateName: 'state',
+            suite: {id: 1},
+            state: {name: 'state'},
             browserId: 'browser',
             stack: error.stack
-
         });
     });
 });
