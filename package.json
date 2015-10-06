@@ -34,7 +34,7 @@
     "browserify": "^5.11.1",
     "chai": "^1.9.1",
     "chai-as-promised": "^4.1.1",
-    "gemini": "^0.6.4",
+    "gemini": "^1.0.0",
     "hbsfy": "^2.1.0",
     "istanbul": "^0.3.2",
     "jscs": "^1.6.2",
