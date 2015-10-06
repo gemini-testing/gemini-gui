@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1 - 2015-10-06
+
+* Update `gemini` version to v1.0.0 (@sipayrt).
+
 ## 0.3.0 - 2015-08-22
 
 * Work with `gemini` 0.13.x (@j0tunn).
