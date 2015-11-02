@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2 - 2015-11-02
+
+* Correctly mark tests from different suite paths in html-report (@sipayrt).
+* Add ability to pass arguments to gemini config (@sipayrt).
+* Run tests only in browsers from sets (@sipayrt).
+
 ## 0.3.1 - 2015-10-06
 
 * Update `gemini` version to v1.0.0 (@sipayrt).
