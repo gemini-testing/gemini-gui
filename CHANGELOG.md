@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.0 - 2015-12-20
+
+* Switch to gemini@2.x (@j0tunn).
+
 ## 0.3.2 - 2015-11-02
 
 * Correctly mark tests from different suite paths in html-report (@sipayrt).
