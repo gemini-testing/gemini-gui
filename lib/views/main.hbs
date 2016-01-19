@@ -4,7 +4,7 @@
         <title>Gemini</title>
         <link rel="stylesheet" type="text/css" href="main.css">
     </head>
-    
+
     <body class="report">
         {{#with stats}}
         <dl class="summary">
@@ -16,11 +16,11 @@
         {{/with}}
 
         {{#if suites.length}}
-            <button id="run" class="button button_type_action">Run</button>
+            <button id="run" class="button button_type_action button_togglable">Run</button>
             <button id="expandAll" class="button">Expand all</button>
             <button id="collapseAll" class="button">Collapse all</button>
             <button id="expandErrors" class="button">Expand errors</button>
-
+            <button id="runFailed" class="button button_togglable" disabled>Retry failed tests</button>
             {{#each suites}}
                 {{> suite}}
             {{/each}}

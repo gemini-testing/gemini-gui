@@ -9,7 +9,7 @@
   "scripts": {
     "build-client": "browserify lib/client --debug -p [minifyify --compressPath . --map /client.js.map.json --output ./lib/static/client.js.map.json] -t hbsfy -o ./lib/static/client.js",
     "prepublish": "npm run build-client",
-    "test": "istanbul test _mocha --require ./test/index.js test",
+    "test": "istanbul test _mocha --require ./test/setup.js test/*",
     "lint": "jshint . && jscs ."
   },
   "author": "Sergey Tatarintsev <sevinf@yandex-team.ru> (https://github.com/SevInf)",
@@ -32,18 +32,20 @@
   },
   "devDependencies": {
     "browserify": "^5.11.1",
-    "chai": "^1.9.1",
-    "chai-as-promised": "^4.1.1",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.2.0",
+    "dirty-chai": "^1.2.2",
     "gemini": "^2.1.0",
     "hbsfy": "^2.1.0",
+    "inherit": "^2.2.3",
     "istanbul": "^0.3.2",
     "jscs": "^1.6.2",
     "jshint": "^2.5.6",
     "minifyify": "^4.2.0",
-    "mocha": "^1.21.4",
+    "mocha": "^2.4.4",
     "proxyquire": "^1.7.3",
-    "sinon": "^1.10.3",
-    "sinon-chai": "^2.5.0",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
     "watchify": "^1.0.2"
   },
   "directories": {

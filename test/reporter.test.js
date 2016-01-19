@@ -1,8 +1,6 @@
 'use strict';
 var EventEmitter = require('events').EventEmitter,
     q = require('q'),
-    sinon = require('sinon'),
-    expect = require('chai').expect,
     App = require('../lib/app'),
     reporter = require('../lib/reporter');
 
