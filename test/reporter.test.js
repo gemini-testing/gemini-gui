@@ -149,8 +149,8 @@ describe('reporter', function() {
         error.browserId = 'browser';
         error.state = {name: 'state'};
 
-        emitToReporter('error', error, this.app);
-        expect(this.app.sendClientEvent).to.have.been.calledWith('error', {
+        emitToReporter('err', error, this.app);
+        expect(this.app.sendClientEvent).to.have.been.calledWith('err', {
             suite: {id: 1},
             state: {name: 'state'},
             browserId: 'browser',
