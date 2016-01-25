@@ -75,6 +75,10 @@
     vertical-align: top;
 }
 
+.image-box__replace {
+    width: 40px;
+}
+
 .section__title {
     font-weight: bold;
     cursor: pointer;
