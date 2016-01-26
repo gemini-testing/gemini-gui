@@ -62,6 +62,10 @@
     background: #eee;
 }
 
+.button_type_action {
+    background: #ffde5a;
+}
+
 .image-box {
     background: #c9c9c9;
     padding: 5px;
