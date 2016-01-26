@@ -26,6 +26,17 @@ describe('reporter', function() {
         });
     }
 
+    function mkDummyError_(params) {
+        var error = new Error('example');
+
+        error.suite = params.suite || {id: -1};
+        error.browserId = params.browserId || 'default_browser';
+        error.state = params.state || {name: 'state'};
+        error.name = params.name || 'dummy_error';
+
+        return error;
+    }
+
     itShouldProxyEvent('begin', {});
     itShouldProxyEvent('beginSuite', {
         suite: {name: 'test', id: 1},
@@ -144,10 +155,11 @@ describe('reporter', function() {
     });
 
     it('should report error stack', function() {
-        var error = new Error('example');
-        error.suite = {id: 1};
-        error.browserId = 'browser';
-        error.state = {name: 'state'};
+        var error = mkDummyError_({
+            suite: {id: 1},
+            browserId: 'browser',
+            state: {name: 'state'}
+        });
 
         emitToReporter('err', error, this.app);
         expect(this.app.sendClientEvent).to.have.been.calledWith('err', {
@@ -155,6 +167,36 @@ describe('reporter', function() {
             state: {name: 'state'},
             browserId: 'browser',
             stack: error.stack
+        });
+    });
+
+    it('should register NoRefImageError as failure', function() {
+        var error = mkDummyError_({
+            name: 'NoRefImageError'
+        });
+
+        emitToReporter('err', error, this.app);
+
+        expect(this.app.addNoReferenceTest).to.have.been.calledWith(error);
+    });
+
+    it('should send `noReference` event to client', function() {
+        this.app.currentPathToURL.returns('current_path');
+
+        var error = mkDummyError_({
+            name: 'NoRefImageError',
+            suite: {id: 1},
+            state: {name: 'state'},
+            browserId: 'browser'
+        });
+
+        emitToReporter('err', error, this.app);
+
+        expect(this.app.sendClientEvent).to.be.calledWith('noReference', {
+            suite: {id: 1},
+            state: {name: 'state'},
+            browserId: 'browser',
+            currentURL: 'current_path'
         });
     });
 });
