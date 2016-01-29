@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.0 - 2016-01-29
+
+* Added `--grep` option. Searches suites by full name. (@SwinX)
+* Added possibility to save missing reference images (@SwinX)
+* Added `Retry` button to all failed tests. Added `Retry all` button to retry all failed tests (@SwinX)
+* Added tooltip for `replace` button. (@pazone)
+* Run button now has yellow color (@pazone)
+
 ## 2.0.0 - 2015-12-20
 
 * Switch to gemini@2.x (@j0tunn).
