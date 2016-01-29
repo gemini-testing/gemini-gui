@@ -19,7 +19,9 @@
     "maxparams": 3,
     "node": true,
     "overrides": {
-      "test/*": {"mocha": true},
+      "test/**": {
+        "mocha": true
+      },
       "lib/client/*": {
         "node": false,
         "browserify": true,
@@ -28,5 +30,9 @@
           "EventSource": false
         }
       }
+    },
+    "globals": {
+      "expect": false,
+      "sinon": false
     }
 }

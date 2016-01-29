@@ -1,6 +1,5 @@
 'use strict';
 var TestsIndex = require('../lib/common/tests-index'),
-    expect = require('chai').expect,
     data = {
         onlySuite: {
             suite: {path: 'path/to/test'}

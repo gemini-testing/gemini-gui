@@ -1,7 +1,5 @@
 'use strict';
-var sinon = require('sinon'),
-    expect = require('chai').expect,
-    EventSource = require('../lib/event-source');
+var EventSource = require('../lib/event-source');
 
 describe('EventSource', function() {
     beforeEach(function() {
