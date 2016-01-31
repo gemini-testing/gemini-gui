@@ -18,7 +18,7 @@ npm i -g gemini-gui
 
 To be able to use `GUI` on a project you must have `gemini` installed
 locally in this project. `GUI` will not work with `gemini` below
-`0.8.0`.
+`2.0.0`.
 
 Run in the project root:
 
@@ -36,6 +36,8 @@ Web browser with `GUI` loaded will be opened automatically.
 * `--grid-url`, `-g` - use specified URL, instead of `gridUrl` setting from config file.
 * `--screenshots-dir`, `-s` - use specified directory, instead of `screenshotsDir` setting
 from config.
+* `--grep` - find suites by name. Note that if some suite files specified search will be done
+only in that files.
 * `--debug` - enable debug mode (verbose logging).
 
 You can also override config file options with environment variables. Use `gemini`
