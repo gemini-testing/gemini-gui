@@ -1,6 +1,7 @@
 'use strict';
 
-var proxyquire = require('proxyquire'),
+var _ = require('lodash'),
+    proxyquire = require('proxyquire'),
     q = require('q'),
     fs = require('q-io/fs'),
     RunnerFactory = require('../lib/runner'),
@@ -19,6 +20,8 @@ describe('App', function() {
         sandbox.stub(fs, 'exists').returns(q(false));
         sandbox.stub(fs, 'removeTree').returns(q());
         sandbox.stub(fs, 'makeDirectory').returns(q());
+        sandbox.stub(fs, 'makeTree').returns(q());
+        sandbox.stub(fs, 'copy').returns(q());
     }
 
     function mkApp_(config) {
@@ -154,6 +157,65 @@ describe('App', function() {
             app.addNoReferenceTest(test);
 
             expect(app.addFailedTest).to.be.calledWith(test);
+        });
+    });
+
+    describe('updateReferenceImage', function() {
+        function mkDummyTest_(params) {
+            return _.defaults(params || {}, {
+                suite: {path: 'default_suite_path'},
+                state: 'default_state',
+                browserId: 'default_browser',
+                referencePath: 'default_reference_path',
+                currentPath: 'default_current_path'
+            });
+        }
+
+        beforeEach(function() {
+            stubFs_();
+            sandbox.stub(app, 'refPathToURL');
+        });
+
+        it('should reject reference update if no failed test registered', function() {
+            var test = mkDummyTest_();
+
+            return expect(app.updateReferenceImage(test))
+                .to.be.rejectedWith('No such test failed');
+        });
+
+        it('should create directory tree for reference image before saving', function() {
+            var test = mkDummyTest_({referencePath: 'path/to/reference/image.png'});
+
+            app.addFailedTest(test);
+            return app.updateReferenceImage(test)
+                .then(function() {
+                    expect(fs.makeTree).to.be.calledWith('path/to/reference');
+                });
+        });
+
+        it('should copy current image to reference folder', function() {
+            var test = mkDummyTest_({
+                referencePath: 'path/to/reference/image.png',
+                currentPath: 'path/to/current/image.png'
+            });
+
+            app.addFailedTest(test);
+            return app.updateReferenceImage(test)
+                .then(function() {
+                    expect(fs.copy).to.be.calledWith('path/to/current/image.png', 'path/to/reference/image.png');
+                });
+        });
+
+        it('should be resolved with URL to updated reference', function() {
+            var test = mkDummyTest_();
+
+            app.refPathToURL.returns(q('http://dummy_ref.url'));
+            app.addFailedTest(test);
+
+            return app.updateReferenceImage(test)
+                .then(function(result) {
+                    expect(result).to.be.equal('http://dummy_ref.url');
+                });
         });
     });
 
