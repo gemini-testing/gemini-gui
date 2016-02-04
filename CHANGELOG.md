@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1 - 2016-02-03
+
+Fix: reference images for new suites saved correctly (@SwinX) 
+
 ## 2.1.0 - 2016-01-29
 
 * Added `--grep` option. Searches suites by full name. (@SwinX)
