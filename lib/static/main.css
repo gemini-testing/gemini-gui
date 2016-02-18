@@ -18,7 +18,7 @@
     to {opacity: 0.3;}
 }
 
-.report {
+html, body {
     font: 14px Helvetica Neue, Arial, sans-serif;
 }
 
@@ -151,8 +151,10 @@
     font: 12px Consolas, Monaco, monospace;
 }
 
-.cswitcher {
+.controls__item {
     padding: 5px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .cswitcher__item {
@@ -185,4 +187,38 @@
 
 .cswitcher_color_3 {
     background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg"><path fill="#cecece" d="m0 0h35c0 11.67 0 23.33 0 35-11.67 0-23.33 0-35 0v-35"/><g fill="#fff"><path d="m35 0h35v35c-11.67 0-23.33 0-35 0 0-11.67 0-23.33 0-35"/><path d="m0 35c11.67 0 23.33 0 35 0 0 11.67 0 23.33 0 35h-35v-35"/></g><path fill="#cecece" d="m35 35c11.67 0 23.33 0 35 0v35h-35c0-11.67 0-23.33 0-35"/></svg>');
+}
+
+.suite-controls__item {
+    box-shadow: 0 0 1px #000;
+    border: 1px solid #fff;
+    display: inline-block;
+    font-size: 14px;
+    height: 22px;
+    padding: 0 4px;
+}
+
+.suite-controls__item::before {
+    padding-right: 4px;
+}
+
+.suite-controls__item:hover {
+    cursor: pointer;
+}
+
+.suite-controls__item_disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.suite-controls__item_hidden {
+    display: none;
+}
+
+.suite-controls__accept::before {
+    content: '✔';
+}
+
+.suite-controls__retry::before {
+    content: '↻';
 }
