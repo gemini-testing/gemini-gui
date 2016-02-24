@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.0 - 2016-02-24
+
+* Redesigned action buttons - now they are located at the top of test block near background buttons. Also accept button now works for both cases - accepting new reference and replace existing. (@SwinX)
+* Added possibility to retry any test, even successful (@SwinX)
+* Removed 'uncaughtException' handler from code. (@SwinX)
+
 ## 2.1.1 - 2016-02-03
 
 Fix: reference images for new suites saved correctly (@SwinX) 
