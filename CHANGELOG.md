@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.1 - 2016-02-25
+
+Fix: retry button enabled correctly after retrying single test (@SwinX)
+
 ## 2.2.0 - 2016-02-24
 
 * Redesigned action buttons - now they are located at the top of test block near background buttons. Also accept button now works for both cases - accepting new reference and replace existing. (@SwinX)
