@@ -208,7 +208,10 @@ html, body {
 
 .suite-controls__item_disabled {
     opacity: 0.3;
-    pointer-events: none;
+}
+
+.suite-controls__item_disabled:hover {
+    cursor: not-allowed;
 }
 
 .suite-controls__item_hidden {
