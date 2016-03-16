@@ -9,14 +9,8 @@ module.exports = {
         filename: 'client.js'
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'main',
-            children: true,
-            minChunks: 2
-        }),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 51200 }),
         new webpack.optimize.UglifyJsPlugin({
             mangle:   true,
             compress: {
@@ -27,12 +21,12 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.js/,
+                test: /\.js$/,
                 loader: 'babel',
-                inclue: __dirname + '/lib/client'
+                include: __dirname + '/lib/client'
             },
             {
-                test: /\.hbs/,
+                test: /\.hbs$/,
                 loader: 'handlebars'
             }
         ]

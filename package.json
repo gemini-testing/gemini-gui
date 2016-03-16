@@ -10,7 +10,9 @@
     "build-client": "webpack",
     "prepublish": "npm run build-client",
     "test": "istanbul test _mocha --require ./test/setup.js test/*",
-    "lint": "jshint . && jscs ."
+    "lint": "jshint . && jscs .",
+    "precommit": "npm run lint",
+    "preversion": "npm run lint && npm test"
   },
   "author": "Sergey Tatarintsev <sevinf@yandex-team.ru> (https://github.com/SevInf)",
   "license": "MIT",
@@ -39,6 +41,7 @@
     "gemini": "^2.1.0",
     "handlebars-loader": "^1.1.4",
     "hbsfy": "^2.1.0",
+    "husky": "^0.11.3",
     "istanbul": "^0.3.2",
     "jscs": "^1.6.2",
     "jshint": "^2.5.6",
