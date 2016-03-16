@@ -16,14 +16,22 @@ module.exports = {
             compress: {
                 warnings: false // Suppress uglification warnings
             }
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
         })
     ],
     module: {
         loaders: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 loader: 'babel',
-                include: __dirname + '/lib/client'
+                include: __dirname + '/lib/client',
+                query: {
+                    presets: ['es2015', 'react']
+                }
             },
             {
                 test: /\.hbs$/,
