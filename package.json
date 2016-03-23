@@ -32,21 +32,21 @@
     "temp": "^0.8.1"
   },
   "devDependencies": {
-    "browserify": "^5.11.1",
+    "browserify": "^13.0.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
     "dirty-chai": "^1.2.2",
-    "gemini": "^2.1.0",
+    "gemini": "^3.0.0",
     "hbsfy": "^2.1.0",
     "istanbul": "^0.3.2",
     "jscs": "^1.6.2",
     "jshint": "^2.5.6",
-    "minifyify": "^4.2.0",
+    "minifyify": "^7.3.2",
     "mocha": "^2.4.4",
     "proxyquire": "^1.7.3",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
-    "watchify": "^1.0.2"
+    "watchify": "^3.7.0"
   },
   "directories": {
     "test": "test"
