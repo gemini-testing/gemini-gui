@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.0 - 2016-03.23
+
+* Switch to gemini@3.x (@j0tunn)
+
 ## 2.2.1 - 2016-02-25
 
 Fix: retry button enabled correctly after retrying single test (@SwinX)
@@ -12,7 +16,7 @@ Fix: retry button enabled correctly after retrying single test (@SwinX)
 
 ## 2.1.1 - 2016-02-03
 
-Fix: reference images for new suites saved correctly (@SwinX) 
+Fix: reference images for new suites saved correctly (@SwinX)
 
 ## 2.1.0 - 2016-01-29
 
