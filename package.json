@@ -29,6 +29,7 @@
     "q-io": "^1.11.4",
     "resolve": "^1.0.0",
     "semver": "^3.0.1",
+    "shelljs": "^0.6.0",
     "temp": "^0.8.1"
   },
   "devDependencies": {
@@ -36,7 +37,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
     "dirty-chai": "^1.2.2",
-    "gemini": "^3.0.0",
+    "gemini": "^4.0.0",
     "hbsfy": "^2.1.0",
     "istanbul": "^0.3.2",
     "jscs": "^1.6.2",
