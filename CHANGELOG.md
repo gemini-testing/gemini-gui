@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.0 - 2016-04.20
+
+* Support gemini@4.x (@sipayrt)
+
 ## 3.0.0 - 2016-03.23
 
 * Switch to gemini@3.x (@j0tunn)
