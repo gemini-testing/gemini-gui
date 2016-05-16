@@ -149,6 +149,7 @@ html, body {
     border: 1px solid #ccc;
     padding: 5px;
     font: 12px Consolas, Monaco, monospace;
+    overflow-x: scroll;
 }
 
 .controls__item {
