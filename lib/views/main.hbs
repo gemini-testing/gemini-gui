@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="main.css">
     </head>
 
-    <body class="report">
+    <body class="report"{{#if autoRun}} data-auto-run="true"{{/if}}>
         {{#with stats}}
         <dl class="summary">
             <dt class="summary__key">Total Tests</dt><dd class="summary__value">{{total}}</dd>
