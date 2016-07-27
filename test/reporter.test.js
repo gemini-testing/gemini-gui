@@ -74,6 +74,7 @@ describe('reporter', function() {
             suite: {id: 1, name: 'test'},
             state: {name: 'state'},
             browserId: 'browser',
+            sessionId: 'session',
             equal: true,
             referencePath: 'ref.png',
             currentPath: 'curr.png'
@@ -81,7 +82,10 @@ describe('reporter', function() {
 
         expect(this.app.sendClientEvent).to.have.been.calledWith('endTest', {
             suite: {id: 1, name: 'test'},
-            state: {name: 'state'},
+            state: {
+                name: 'state',
+                metaInfo: {sessionId: 'session'}
+            },
             browserId: 'browser',
             equal: true,
             referenceURL: '/ref/browser/image.png',
@@ -110,6 +114,7 @@ describe('reporter', function() {
             suite: {id: 1, name: 'test'},
             state: {name: 'state'},
             browserId: 'browser',
+            sessionId: 'session',
             equal: false,
             referencePath: 'ref.png',
             currentPath: 'curr.png'
@@ -117,7 +122,10 @@ describe('reporter', function() {
 
         expect(this.app.addFailedTest).to.have.been.calledWith({
             suite: {id: 1, name: 'test'},
-            state: {name: 'state'},
+            state: {
+                name: 'state',
+                metaInfo: {sessionId: 'session'}
+            },
             browserId: 'browser',
             referencePath: 'ref.png',
             currentPath: 'curr.png'
@@ -133,6 +141,7 @@ describe('reporter', function() {
             suite: {id: 1, name: 'test'},
             state: {name: 'state'},
             browserId: 'browser',
+            sessionId: 'session',
             equal: false,
             referencePath: 'ref.png',
             currentPath: 'curr.png'
@@ -142,7 +151,10 @@ describe('reporter', function() {
         return q().then(function() {
             expect(_this.app.sendClientEvent).to.have.been.calledWith('endTest', {
                 suite: {id: 1, name: 'test'},
-                state: {name: 'state'},
+                state: {
+                    name: 'state',
+                    metaInfo: {sessionId: 'session'}
+                },
                 browserId: 'browser',
                 equal: false,
                 referenceURL: '/ref/browser/image.png',
