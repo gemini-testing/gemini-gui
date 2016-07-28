@@ -101,6 +101,37 @@ html, body {
     color: #ccc;
 }
 
+.meta-info {
+    margin: 5px;
+}
+
+.meta-info__switcher {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.meta-info__content {
+    margin: 5px 0;
+    background: #f6f5f3;
+    padding: 5px;
+}
+
+.meta-info_collapsed .meta-info__content {
+    display: none;
+}
+
+.meta-info__switcher:before {
+    display: inline-block;
+    margin-right: 2px;
+    vertical-align: middle;
+    content: '\25bc';
+    color: black;
+}
+
+.meta-info_collapsed .meta-info__switcher:before {
+    transform: rotate(-90deg);
+}
+
 .section_status_queued > .section__title::before {
     color: #e7d700;
 }
