@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.2.0 - 2016-07-28
+
+* Supported displaying of test url and session id in meta-info of HTML reporter.
+
+## 4.1.0 - 2016-07-15
+
+* Supported option `--browser`.
+
 ## 4.0.0 - 2016-04.20
 
 * Support gemini@4.x (@sipayrt)
