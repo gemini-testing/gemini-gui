@@ -33,12 +33,13 @@ Web browser with `GUI` loaded will be opened automatically.
 * `--port`, `-p` - specify port to run `GUI` backend on.
 * `--hostname`, `-h` - specify hostname to run `GUI` backend on.
 * `--root-url`, `-r` - use specified URL, instead of `rootUrl` setting from config file.
-* `--grid-url`, `-g` - use specified URL, instead of `gridUrl` setting from config file.
+* `--grid-url` - use specified URL, instead of `gridUrl` setting from config file.
 * `--screenshots-dir`, `-s` - use specified directory, instead of `screenshotsDir` setting
 from config.
-* `--grep` - find suites by name. Note that if some suite files specified search will be done
+* `--grep`, `-g` - find suites by name. Note that if some suite files specified search will be done
 only in that files.
 * `--debug` - enable debug mode (verbose logging).
+* `--auto-run`, `-a` - run gemini immediately (without pressing `run` button).
 
 You can also override config file options with environment variables. Use `gemini`
 [documentation](https://github.com/gemini-testing/gemini#configuration) for details.
