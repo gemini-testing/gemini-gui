@@ -1,7 +1,3 @@
-.gitignore
-.travis.yml
-.jshintignore
-.jshintrc
-.npmignore
+**/.*
 test/
 assets/
