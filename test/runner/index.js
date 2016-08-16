@@ -1,52 +1,50 @@
 'use strict';
 
-var RunnerFactory = require('../../lib/runner'),
-    AllSuitesRunner = require('../../lib/runner/all-suites-runner'),
-    SpecificSuitesRunner = require('../../lib/runner/specific-suites-runner'),
+const RunnerFactory = require('../../lib/runner');
+const AllSuitesRunner = require('../../lib/runner/all-suites-runner');
+const SpecificSuitesRunner = require('../../lib/runner/specific-suites-runner');
+const mkDummyCollection = require('../utils').mkDummyCollection;
 
-    mkDummyCollection = require('../utils').mkDummyCollection;
+describe('RunnerFactory', () => {
+    const sandbox = sinon.sandbox.create();
 
-describe('RunnerFactory', function() {
-    var sandbox = sinon.sandbox.create();
+    afterEach(() => sandbox.restore());
 
-    afterEach(function() {
-        sandbox.restore();
-    });
-
-    describe('create', function() {
-        it('should create AllSuitesRunner if no specific tests passed', function() {
-            expect(RunnerFactory.create()).to.be.instanceOf(AllSuitesRunner);
+    describe('create', () => {
+        it('should create AllSuitesRunner if no specific tests passed', () => {
+            assert.instanceOf(RunnerFactory.create(), AllSuitesRunner);
         });
 
-        it('should pass collection to AllSuitesRunner', function() {
-            var collection = mkDummyCollection(),
-                runner = RunnerFactory.create(collection),
-                runHandler = sandbox.stub();
+        it('should pass collection to AllSuitesRunner', () => {
+            const collection = mkDummyCollection();
+            const runner = RunnerFactory.create(collection);
+            const runHandler = sandbox.stub();
 
             runner.run(runHandler);
 
-            expect(runHandler).to.be.calledWith(collection);
+            assert.calledWith(runHandler, collection);
         });
 
-        it('should create SpecificSuitesRunner if specific tests passed', function() {
-            expect(RunnerFactory.create(null, ['test'])).to.be.instanceOf(SpecificSuitesRunner);
+        it('should create SpecificSuitesRunner if specific tests passed', () => {
+            assert.instanceOf(RunnerFactory.create(null, ['test']), SpecificSuitesRunner);
         });
 
-        it('should pass suite collection and tests to SpecificSuiteRunner', function() {
-            var collection = mkDummyCollection(),
-                tests = [{
-                    suite: {path: 'suite'},
-                    state: {name: 'state'},
-                    browserId: 'browser'
-                }],
-                runner = RunnerFactory.create(collection, tests),
-                runHandler = sandbox.stub();
+        it('should pass suite collection and tests to SpecificSuiteRunner', () => {
+            const collection = mkDummyCollection();
+            const tests = [{
+                suite: {path: 'suite'},
+                state: {name: 'state'},
+                browserId: 'browser'
+            }];
+
+            const runner = RunnerFactory.create(collection, tests);
+            const runHandler = sandbox.stub();
 
             runner.run(runHandler);
 
-            expect(runHandler).to.be.calledWith(collection);
-            expect(collection.enable).to.be.calledOnce
-                .and.to.be.calledWith('suite', {state: 'state', browser: 'browser'});
+            assert.calledWith(runHandler, collection);
+            assert.calledOnce(collection.enable);
+            assert.calledWith(collection.enable, 'suite', {state: 'state', browser: 'browser'});
         });
     });
 });

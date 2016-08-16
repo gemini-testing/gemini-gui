@@ -1,10 +1,10 @@
 'use strict';
 
-var chai = require('chai');
+const chai = require('chai');
 
-chai.use(require('sinon-chai'));
-chai.use(require('chai-as-promised'));
-chai.use(require('dirty-chai'));
-
-global.expect = chai.expect;
 global.sinon = require('sinon');
+global.assert = chai.assert;
+
+chai.use(require('chai-as-promised'));
+chai.use(require('sinon-chai'));
+sinon.assert.expose(chai.assert, {prefix: ''});
