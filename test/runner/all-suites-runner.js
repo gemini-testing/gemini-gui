@@ -6,7 +6,7 @@ const AllSuitesRunner = require('../../lib/runner/all-suites-runner');
 const mkDummyCollection = require('../utils').mkDummyCollection;
 
 describe('AllSuitesRunner', () => {
-    var sandbox = sinon.sandbox.create();
+    const sandbox = sinon.sandbox.create();
 
     afterEach(() => sandbox.restore());
 

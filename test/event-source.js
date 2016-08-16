@@ -16,9 +16,9 @@ describe('EventSource', () => {
         this.source.emit('event', {data: 'value'});
 
         assert.strictEqual(this.connection.write.callCount, 3);
-        assert.strictEqual(this.connection.write.firstCall.args[0], 'event: event\n');
-        assert.strictEqual(this.connection.write.secondCall.args[0], 'data: {"data":"value"}\n');
-        assert.strictEqual(this.connection.write.thirdCall.args[0], '\n\n');
+        assert.equal(this.connection.write.firstCall.args[0], 'event: event\n');
+        assert.equal(this.connection.write.secondCall.args[0], 'data: {"data":"value"}\n');
+        assert.equal(this.connection.write.thirdCall.args[0], '\n\n');
     });
 
     it('should handle circular references format', () => {
@@ -28,8 +28,8 @@ describe('EventSource', () => {
         this.source.emit('event', a);
 
         assert.strictEqual(this.connection.write.callCount, 3);
-        assert.strictEqual(this.connection.write.firstCall.args[0], 'event: event\n');
-        assert.strictEqual(this.connection.write.secondCall.args[0], 'data: {"b":true,"c":"[Circular ~]"}\n');
-        assert.strictEqual(this.connection.write.thirdCall.args[0], '\n\n');
+        assert.equal(this.connection.write.firstCall.args[0], 'event: event\n');
+        assert.equal(this.connection.write.secondCall.args[0], 'data: {"b":true,"c":"[Circular ~]"}\n');
+        assert.equal(this.connection.write.thirdCall.args[0], '\n\n');
     });
 });

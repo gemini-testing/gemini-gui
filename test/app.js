@@ -54,9 +54,7 @@ describe('App', () => {
             fs.exists.withArgs('current_dir').returns(q(true));
 
             return app.initialize()
-                .then(() => {
-                    assert.calledWith(fs.removeTree, 'current_dir');
-                });
+                .then(() => assert.calledWith(fs.removeTree, 'current_dir'));
         });
 
         it('should remove old fs tree for diff images dir if it exists', () => {
@@ -65,27 +63,21 @@ describe('App', () => {
             fs.exists.withArgs('diff_dir').returns(q(true));
 
             return app.initialize()
-                .then(() => {
-                    assert.calledWith(fs.removeTree, 'diff_dir');
-                });
+                .then(() => assert.calledWith(fs.removeTree, 'diff_dir'));
         });
 
         it('should create new tree for current images dir', () => {
             app.currentDir = 'current_dir';
 
             return app.initialize()
-                .then(() => {
-                    assert.calledWith(fs.makeDirectory, 'current_dir');
-                });
+                .then(() => assert.calledWith(fs.makeDirectory, 'current_dir'));
         });
 
         it('should create new tree for diff images dir', () => {
             app.currentDir = 'diff_dir';
 
             return app.initialize()
-                .then(() => {
-                    assert.calledWith(fs.makeDirectory, 'diff_dir');
-                });
+                .then(() => assert.calledWith(fs.makeDirectory, 'diff_dir'));
         });
 
         it('should read tests', () => {
@@ -183,9 +175,7 @@ describe('App', () => {
             app.addFailedTest(test);
 
             return app.updateReferenceImage(test)
-                .then(() => {
-                    assert.calledWith(fs.makeTree, 'path/to/reference');
-                });
+                .then(() => assert.calledWith(fs.makeTree, 'path/to/reference'));
         });
 
         it('should copy current image to reference folder', () => {
@@ -197,9 +187,7 @@ describe('App', () => {
             app.addFailedTest(test);
 
             return app.updateReferenceImage(test)
-                .then(() => {
-                    assert.calledWith(fs.copy, currentPath, referencePath);
-                });
+                .then(() => assert.calledWith(fs.copy, currentPath, referencePath));
         });
 
         it('should be resolved with URL to updated reference', () => {
@@ -209,9 +197,7 @@ describe('App', () => {
             app.addFailedTest(test);
 
             return app.updateReferenceImage(test)
-                .then((result) => {
-                    assert.equal(result, 'http://dummy_ref.url');
-                });
+                .then((result) => assert.equal(result, 'http://dummy_ref.url'));
         });
     });
 
