@@ -9,14 +9,14 @@ const RunnerFactory = require('../lib/runner');
 const AllSuitesRunner = require('../lib/runner/all-suites-runner');
 const mkDummyCollection = require('./utils').mkDummyCollection;
 
-let App;
-
 describe('App', () => {
     const sandbox = sinon.sandbox.create();
 
     let suiteCollection;
     let Gemini;
+    let App;
     let app;
+    let runner;
 
     const stubFs_ = () => {
         sandbox.stub(fs, 'exists').returns(q(false));
@@ -31,10 +31,13 @@ describe('App', () => {
     beforeEach(() => {
         suiteCollection = mkDummyCollection();
 
+        runner = {emit: sandbox.spy()};
+
         Gemini = sandbox.stub();
         Gemini.prototype.browserIds = [];
         Gemini.prototype.readTests = sandbox.stub().returns(q(suiteCollection));
         Gemini.prototype.test = sandbox.stub().returns(q());
+        Gemini.prototype.on = sandbox.stub().yields(runner);
 
         App = proxyquire('../lib/app', {
             './find-gemini': sandbox.stub().returns(Gemini)
@@ -153,8 +156,8 @@ describe('App', () => {
                 suite: {path: 'default_suite_path'},
                 state: 'default_state',
                 browserId: 'default_browser',
-                referencePath: 'default_reference_path',
-                currentPath: 'default_current_path'
+                referencePath: 'default/reference/path',
+                currentPath: 'default/current/path'
             });
         };
 
@@ -188,6 +191,32 @@ describe('App', () => {
 
             return app.updateReferenceImage(test)
                 .then(() => assert.calledWith(fs.copy, currentPath, referencePath));
+        });
+
+        it('should emit updateResult event with result argument by emit', () => {
+            const test = mkDummyTest_({referencePath: 'path/to/reference.png'});
+
+            const result = {
+                imagePath: 'path/to/reference.png',
+                updated: true,
+                suite: test.state.suite,
+                state: test.state,
+                browserId: test.browserId
+            };
+
+            app.addFailedTest(test);
+
+            return app.updateReferenceImage(test)
+                .then(() => assert.calledWithExactly(runner.emit, 'updateResult', result));
+        });
+
+        it('should emit updateResult event only after copy current image to reference folder', () => {
+            const test = mkDummyTest_();
+
+            app.addFailedTest(test);
+
+            return app.updateReferenceImage(test)
+                .then(() => assert.isTrue(runner.emit.calledAfter(fs.copy)));
         });
 
         it('should be resolved with URL to updated reference', () => {
