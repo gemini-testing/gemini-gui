@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.1 - 2016-08-23
+
+* Fixed bug with passing config path through `--config` option
+
 ## 4.2.0 - 2016-07-28
 
 * Supported displaying of test url and session id in meta-info of HTML reporter.
