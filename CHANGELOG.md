@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.3.0 - 2016-08-23
+
+* Emit updateResult event during update for optimize reference image in plugin
+
 ## 4.2.1 - 2016-08-23
 
 * Fixed bug with passing config path through `--config` option
