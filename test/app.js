@@ -92,7 +92,7 @@ describe('App', () => {
             return app.initialize()
                 .then(() => {
                     assert.calledWith(Gemini.prototype.readTests,
-                        ['test_file', 'another_test_file'], 'grep');
+                        ['test_file', 'another_test_file'], {grep: 'grep'});
                 });
         });
     });
