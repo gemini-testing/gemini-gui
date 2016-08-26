@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.3.1 - 2016-08-25
+
+* Fixed passing of the 'grep' value
+
 ## 4.3.0 - 2016-08-23
 
 * Emit updateResult event during update for optimize reference image in plugin
