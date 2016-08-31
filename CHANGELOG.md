@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.3.2 - 2016-08-31
+
+* Fixed bug with infinity pending of tests in html reporter
+
 ## 4.3.1 - 2016-08-25
 
 * Fixed passing of the 'grep' value
