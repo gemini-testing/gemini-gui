@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.3.3 - 2016-09-13
+
+* Remove unnecessary output while finding global gemini
+
 ## 4.3.2 - 2016-08-31
 
 * Fixed bug with infinity pending of tests in html reporter
