@@ -8,7 +8,15 @@
              data-suite-path="{{suite.path}}"
              data-state-name="{{state.name}}"
              data-browser-id="{{browserId}}">
-            <div class="section__title">{{browserId}}</div>
+            <div class="section__title">
+                {{browserId}}
+                <a
+                    class="button section__icon section__icon_view-local"
+                    data-suite-view-link="{{rootUrl}}{{suite.url}}" href="{{rootUrl}}{{suite.url}}"
+                    title="view in browser"
+                    target="_blank">
+                </a>
+            </div>
             <div class="section__body">
                 {{#if skipped}}
                     {{> skip-result}}

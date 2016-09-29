@@ -1,5 +1,12 @@
 <div class="section section_collapsed" data-suite-path="{{suite.path}}">
-    <div class="section__title">{{suite.name}}</div>
+    <div class="section__title">
+        {{suite.name}}
+        <button
+                class="button section__icon section__icon_copy-to-clipboard"
+                title="copy to clipboard"
+                data-clipboard-text="{{suite.path}}">
+        </button>
+    </div>
     <div class="section__body section__body_guided">
         {{#each states}}
             {{> state this}}
