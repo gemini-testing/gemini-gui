@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.3.4 - 2016-09-30
+
+* Fixed bug with displaying of test url in meta-info
+
 ## 4.3.3 - 2016-09-13
 
 * Remove unnecessary output while finding global gemini
