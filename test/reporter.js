@@ -1,7 +1,7 @@
 'use strict';
 
 const EventEmitter = require('events').EventEmitter;
-const q = require('q');
+const Promise = require('bluebird');
 const App = require('../lib/app');
 const reporter = require('../lib/reporter');
 
@@ -98,7 +98,7 @@ describe('reporter', () => {
     });
 
     it('should build diff if images are not equal', () => {
-        this.app.buildDiff.returns(q());
+        this.app.buildDiff.returns(Promise.resolve());
 
         const failureData = {
             suite: {id: 1, name: 'test'},
@@ -115,7 +115,7 @@ describe('reporter', () => {
     });
 
     it('should register failure', () => {
-        this.app.buildDiff.returns(q());
+        this.app.buildDiff.returns(Promise.resolve());
 
         emitToReporter('endTest', {
             suite: {id: 1, name: 'test'},
@@ -142,7 +142,7 @@ describe('reporter', () => {
     it('should send event with diffURL to the client', () => {
         this.app.refPathToURL.withArgs('ref.png', 'browser').returns('/ref/browser/image.png');
         this.app.currentPathToURL.withArgs('curr.png').returns('/curr/image.png');
-        this.app.buildDiff.returns(q('/diff/image.png'));
+        this.app.buildDiff.returns(Promise.resolve('/diff/image.png'));
 
         emitToReporter('endTest', {
             suite: {id: 1, name: 'test'},
@@ -154,7 +154,7 @@ describe('reporter', () => {
             currentPath: 'curr.png'
         }, this.app);
 
-        return q().then(() => {
+        return Promise.resolve().then(() => {
             assert.calledWith(this.app.sendClientEvent, 'endTest', {
                 suite: {id: 1, name: 'test'},
                 state: {

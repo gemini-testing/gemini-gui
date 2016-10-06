@@ -2,8 +2,8 @@
 
 const _ = require('lodash');
 const proxyquire = require('proxyquire');
-const q = require('q');
-const fs = require('q-io/fs');
+const Promise = require('bluebird');
+const fs = Promise.promisifyAll(require('fs-extra'));
 
 const RunnerFactory = require('../lib/runner');
 const AllSuitesRunner = require('../lib/runner/all-suites-runner');
@@ -19,11 +19,9 @@ describe('App', () => {
     let runner;
 
     const stubFs_ = () => {
-        sandbox.stub(fs, 'exists').returns(q(false));
-        sandbox.stub(fs, 'removeTree').returns(q());
-        sandbox.stub(fs, 'makeDirectory').returns(q());
-        sandbox.stub(fs, 'makeTree').returns(q());
-        sandbox.stub(fs, 'copy').returns(q());
+        sandbox.stub(fs, 'removeAsync').returns(Promise.resolve());
+        sandbox.stub(fs, 'mkdirpAsync').returns(Promise.resolve());
+        sandbox.stub(fs, 'copyAsync').returns(Promise.resolve());
     };
 
     const mkApp_ = (config) => new App(config || {});
@@ -35,8 +33,8 @@ describe('App', () => {
 
         Gemini = sandbox.stub();
         Gemini.prototype.browserIds = [];
-        Gemini.prototype.readTests = sandbox.stub().returns(q(suiteCollection));
-        Gemini.prototype.test = sandbox.stub().returns(q());
+        Gemini.prototype.readTests = sandbox.stub().returns(Promise.resolve(suiteCollection));
+        Gemini.prototype.test = sandbox.stub().returns(Promise.resolve());
         Gemini.prototype.on = sandbox.stub().yields(runner);
 
         App = proxyquire('../lib/app', {
@@ -54,33 +52,29 @@ describe('App', () => {
         it('should remove old fs tree for current images dir if it exists', () => {
             app.currentDir = 'current_dir';
 
-            fs.exists.withArgs('current_dir').returns(q(true));
-
             return app.initialize()
-                .then(() => assert.calledWith(fs.removeTree, 'current_dir'));
+                .then(() => assert.calledWith(fs.removeAsync, 'current_dir'));
         });
 
         it('should remove old fs tree for diff images dir if it exists', () => {
             app.diffDir = 'diff_dir';
 
-            fs.exists.withArgs('diff_dir').returns(q(true));
-
             return app.initialize()
-                .then(() => assert.calledWith(fs.removeTree, 'diff_dir'));
+                .then(() => assert.calledWith(fs.removeAsync, 'diff_dir'));
         });
 
         it('should create new tree for current images dir', () => {
             app.currentDir = 'current_dir';
 
             return app.initialize()
-                .then(() => assert.calledWith(fs.makeDirectory, 'current_dir'));
+                .then(() => assert.calledWith(fs.mkdirpAsync, 'current_dir'));
         });
 
         it('should create new tree for diff images dir', () => {
             app.currentDir = 'diff_dir';
 
             return app.initialize()
-                .then(() => assert.calledWith(fs.makeDirectory, 'diff_dir'));
+                .then(() => assert.calledWith(fs.mkdirpAsync, 'diff_dir'));
         });
 
         it('should read tests', () => {
@@ -178,7 +172,7 @@ describe('App', () => {
             app.addFailedTest(test);
 
             return app.updateReferenceImage(test)
-                .then(() => assert.calledWith(fs.makeTree, 'path/to/reference'));
+                .then(() => assert.calledWith(fs.mkdirpAsync, 'path/to/reference'));
         });
 
         it('should copy current image to reference folder', () => {
@@ -190,7 +184,7 @@ describe('App', () => {
             app.addFailedTest(test);
 
             return app.updateReferenceImage(test)
-                .then(() => assert.calledWith(fs.copy, currentPath, referencePath));
+                .then(() => assert.calledWith(fs.copyAsync, currentPath, referencePath));
         });
 
         it('should emit updateResult event with result argument by emit', () => {
@@ -216,13 +210,13 @@ describe('App', () => {
             app.addFailedTest(test);
 
             return app.updateReferenceImage(test)
-                .then(() => assert.isTrue(runner.emit.calledAfter(fs.copy)));
+                .then(() => assert.isTrue(runner.emit.calledAfter(fs.copyAsync)));
         });
 
         it('should be resolved with URL to updated reference', () => {
             const test = mkDummyTest_();
 
-            app.refPathToURL.returns(q('http://dummy_ref.url'));
+            app.refPathToURL.returns(Promise.resolve('http://dummy_ref.url'));
             app.addFailedTest(test);
 
             return app.updateReferenceImage(test)
