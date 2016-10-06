@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.3.5 - 2016-10-06
+
+* Replace `q` and `q-io` with `bluebird` and `fs-extra`. `Array.prototype` will not be overriden now
+
 ## 4.3.4 - 2016-09-30
 
 * Fixed bug with displaying of test url in meta-info
