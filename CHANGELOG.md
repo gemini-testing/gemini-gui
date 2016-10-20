@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.4.0 - 2016-10-20
+
+* Add "copy to clipboard" and "view in browser" buttons. You can copy suite name and open suite url in browser with one click now
+
 ## 4.3.5 - 2016-10-06
 
 * Replace `q` and `q-io` with `bluebird` and `fs-extra`. `Array.prototype` will not be overriden now
