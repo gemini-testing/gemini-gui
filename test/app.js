@@ -79,14 +79,27 @@ describe('App', () => {
 
         it('should read tests', () => {
             const app = mkApp_({
-                testFiles: ['test_file', 'another_test_file'],
-                grep: 'grep'
+                testFiles: ['test_file', 'another_test_file']
             });
 
             return app.initialize()
                 .then(() => {
                     assert.calledWith(Gemini.prototype.readTests,
-                        ['test_file', 'another_test_file'], {grep: 'grep'});
+                        ['test_file', 'another_test_file']);
+                });
+        });
+
+        it('should pass options from cli to Gemini', () => {
+            const app = mkApp_({
+                testFiles: ['test_file'],
+                grep: 'grep',
+                set: ['set']
+            });
+
+            return app.initialize()
+                .then(() => {
+                    assert.calledWith(Gemini.prototype.readTests,
+                        ['test_file'], {grep: 'grep', sets: ['set']});
                 });
         });
     });
