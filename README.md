@@ -40,6 +40,7 @@ from config.
 only in that files.
 * `--debug` - enable debug mode (verbose logging).
 * `--auto-run`, `-a` - run gemini immediately (without pressing `run` button).
+* `--set`, `-s` - run set specified in config.
 
 You can also override config file options with environment variables. Use `gemini`
 [documentation](https://github.com/gemini-testing/gemini#configuration) for details.
