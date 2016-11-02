@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.5.0 - 2016-11-02
+
+* Add ability to run sets specified in config
+
 ## 4.4.0 - 2016-10-20
 
 * Add "copy to clipboard" and "view in browser" buttons. You can copy suite name and open suite url in browser with one click now
