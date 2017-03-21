@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.6.1 - 2017-03-28
+
+* Add retry button and metaInfo section to error state.
+
 ## 4.6.0 - 2017-01-10
 
 * Add position sticky for controls. May be helpfull for big reference images
