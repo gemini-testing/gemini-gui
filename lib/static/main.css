@@ -73,7 +73,7 @@ html, body {
     border-radius: 2px;
 }
 
-.image-box {
+.image-box, .error-box{
     background: #c9c9c9;
     padding: 5px;
     border: 1px solid #ccc;
@@ -185,7 +185,7 @@ html, body {
 
 .stacktrace {
     background: #f6f5f3;
-    border: 1px solid #ccc;
+    margin: 5px;
     padding: 5px;
     font: 12px Consolas, Monaco, monospace;
     overflow-x: scroll;

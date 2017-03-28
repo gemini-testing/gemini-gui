@@ -34,6 +34,7 @@ describe('reporter', () => {
         error.browserId = params.browserId || 'default_browser';
         error.state = params.state || {name: 'state'};
         error.name = params.name || 'dummy_error';
+        error.sessionId = params.sessionId;
 
         return error;
     };
@@ -170,18 +171,19 @@ describe('reporter', () => {
         });
     });
 
-    it('should report error stack', () => {
+    it('should report error stack and metaInfo', () => {
         const error = mkDummyError_({
-            suite: {id: 1},
+            suite: {id: 1, file: '/some/file'},
             browserId: 'browser',
-            state: {name: 'state'}
+            state: {name: 'state'},
+            sessionId: 'sessionId'
         });
 
         emitToReporter('err', error, this.app);
 
         assert.calledWith(this.app.sendClientEvent, 'err', {
-            suite: {id: 1},
-            state: {name: 'state'},
+            suite: {id: 1, file: '/some/file'},
+            state: {metaInfo: {file: '/some/file', sessionId: 'sessionId'}, name: 'state'},
             browserId: 'browser',
             stack: error.stack
         });
