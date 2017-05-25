@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.7.0 - 2017-05-25
+
+* Added option `--no-open` for not to open a browser window after starting the server
+* Added CLA
+
 ## 4.6.1 - 2017-03-28
 
 * Add retry button and metaInfo section to error state.
