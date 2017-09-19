@@ -4,6 +4,7 @@ const _ = require('lodash');
 const proxyquire = require('proxyquire');
 const Promise = require('bluebird');
 const fs = Promise.promisifyAll(require('fs-extra'));
+const path = require('path');
 
 const RunnerFactory = require('../lib/runner');
 const AllSuitesRunner = require('../lib/runner/all-suites-runner');
@@ -22,6 +23,7 @@ describe('App', () => {
         sandbox.stub(fs, 'removeAsync').returns(Promise.resolve());
         sandbox.stub(fs, 'mkdirpAsync').returns(Promise.resolve());
         sandbox.stub(fs, 'copyAsync').returns(Promise.resolve());
+        sandbox.stub(fs, 'readJsonAsync').returns(Promise.resolve({}));
     };
 
     const mkApp_ = (config) => new App(config || {});
@@ -256,6 +258,33 @@ describe('App', () => {
             const result = app.currentPathToURL('full_path');
 
             return assert.match(result, /\?t=\d+/);
+        });
+    });
+
+    describe('copyImage', () => {
+        beforeEach(() => {
+            stubFs_();
+
+            app = mkApp_({reuse: 'reusepath'});
+        });
+
+        it('should reject if copying failed', () => {
+            sandbox.stub(path, 'dirname').withArgs('reusepath').returns('reusedir');
+            sandbox.stub(path, 'resolve').withArgs('reusedir', 'src/rel/path').returns('/src/abs/path');
+            fs.copyAsync.withArgs('/src/abs/path', '/dst/abs/path').returns(Promise.reject());
+
+            return app.copyImage('src/rel/path', '/dst/abs/path')
+                .then(() => assert.fail('Not rejected'),
+                    () => {});
+        });
+
+        it('should resolve if image was copied successfully', () => {
+            sandbox.stub(path, 'dirname').withArgs('reusepath').returns('reusedir');
+            sandbox.stub(path, 'resolve').withArgs('reusedir', 'src/rel/path').returns('/src/abs/path');
+
+            return app.copyImage('src/rel/path', '/dst/abs/path')
+                .then(() => {},
+                    () => assert.fail('Not resolved'));
         });
     });
 });

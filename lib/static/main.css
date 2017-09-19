@@ -167,13 +167,13 @@ html, body {
     color: #c00;
 }
 
-.section_status_skip > .section__title,
-.section_status_skip > .section__title::before {
+.section_status_skipped > .section__title,
+.section_status_skipped > .section__title::before {
     color: #ccc;
 }
 
 .report_showOnlyErrors .section_status_success,
-.report_showOnlyErrors .section_status_skip {
+.report_showOnlyErrors .section_status_skipped {
     display: none;
 }
 
