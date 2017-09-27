@@ -17,11 +17,12 @@
 
         {{#if suites.length}}
             <button id="run" class="button button_type_action button_togglable">Run</button>
+            <button id="runFailed" class="button button_togglable" disabled>Retry failed tests</button>
+            <button id="acceptAll" class="button button_togglable">Accept all</button>
             <button id="expandAll" class="button">Expand all</button>
             <button id="collapseAll" class="button">Collapse all</button>
             <button id="expandErrors" class="button">Expand errors</button>
             <button id="showOnlyErrors" class="button">Show only errors</button>
-            <button id="runFailed" class="button button_togglable" disabled>Retry failed tests</button>
             <input id="viewHostInput" type="text" class="text-input" size="40" placeholder="change original host for view in browser"/>
             {{#each suites}}
                 {{> suite}}
