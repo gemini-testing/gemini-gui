@@ -1,6 +1,6 @@
 {
   "name": "gemini-gui",
-  "version": "5.0.0-alpha.4",
+  "version": "5.0.0-alpha.5",
   "description": "GUI for gemini testing utility",
   "main": "lib/index.js",
   "bin": {
