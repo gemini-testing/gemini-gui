@@ -1,10 +1,10 @@
-<div class="section section_collapsed"
+<div class="section {{#ifShouldCollapse status}}section_collapsed{{/ifShouldCollapse}} section_status_{{sectionStatus}}"
      data-suite-path="{{suite.path}}"
      data-state-name="{{state.name}}">
     <div class="section__title">{{state.name}}</div>
     <div class="section__body section__body_guided">
         {{#each browsers}}
-        <div class="section section_collapsed"
+        <div class="section {{#ifShouldCollapse status}}section_collapsed{{/ifShouldCollapse}} section_status_{{status}}"
              data-suite-path="{{suite.path}}"
              data-state-name="{{state.name}}"
              data-browser-id="{{browserId}}">
@@ -18,11 +18,15 @@
                 </a>
             </div>
             <div class="section__body">
-                {{#if skipped}}
+                {{#ifCond status '===' 'skipped'}}
                     {{> skip-result}}
+                {{else ifCond status '===' 'fail'}}
+                    {{> fail-result}}
+                {{else ifCond status '===' 'error'}}
+                    {{> error-result}}
                 {{else}}
                     {{> success-result}}
-                {{/if}}
+                {{/ifCond}}
             </div>
         </div>
         {{/each}}

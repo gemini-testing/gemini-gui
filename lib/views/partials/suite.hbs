@@ -1,4 +1,4 @@
-<div class="section section_collapsed" data-suite-path="{{suite.path}}">
+<div class="section {{#ifShouldCollapse status}}section_collapsed{{/ifShouldCollapse}} section_status_{{sectionStatus}}" data-suite-path="{{suite.path}}">
     <div class="section__title">
         {{suite.name}}
         <button
