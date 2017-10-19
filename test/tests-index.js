@@ -18,7 +18,7 @@ const data = {
     }
 };
 
-describe('TestsIndex', () => {
+describe('lib/common/tests-index', () => {
     beforeEach(() => {
         this.index = new TestsIndex();
         this.index.add(data.onlySuite);

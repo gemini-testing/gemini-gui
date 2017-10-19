@@ -8,9 +8,9 @@ const path = require('path');
 
 const RunnerFactory = require('../lib/runner');
 const AllSuitesRunner = require('../lib/runner/all-suites-runner');
-const mkDummyCollection = require('./utils').mkDummyCollection;
+const mkDummyCollection = require('./test-utils').mkDummyCollection;
 
-describe('App', () => {
+describe('lib/app', () => {
     const sandbox = sinon.sandbox.create();
 
     let suiteCollection;
@@ -264,27 +264,19 @@ describe('App', () => {
     describe('copyImage', () => {
         beforeEach(() => {
             stubFs_();
-
-            app = mkApp_({reuse: 'reusepath'});
+            sandbox.stub(path, 'resolve');
         });
 
         it('should reject if copying failed', () => {
-            sandbox.stub(path, 'dirname').withArgs('reusepath').returns('reusedir');
-            sandbox.stub(path, 'resolve').withArgs('reusedir', 'src/rel/path').returns('/src/abs/path');
-            fs.copyAsync.withArgs('/src/abs/path', '/dst/abs/path').returns(Promise.reject());
+            fs.copyAsync.returns(Promise.reject());
 
-            return app.copyImage('src/rel/path', '/dst/abs/path')
-                .then(() => assert.fail('Not rejected'),
-                    () => {});
+            return app.initialize()
+                .then(() => assert.isRejected(app.copyImage('src/rel/path', '/dst/abs/path')));
         });
 
         it('should resolve if image was copied successfully', () => {
-            sandbox.stub(path, 'dirname').withArgs('reusepath').returns('reusedir');
-            sandbox.stub(path, 'resolve').withArgs('reusedir', 'src/rel/path').returns('/src/abs/path');
-
-            return app.copyImage('src/rel/path', '/dst/abs/path')
-                .then(() => {},
-                    () => assert.fail('Not resolved'));
+            return app.initialize()
+                .then(() => assert.isFulfilled(app.copyImage('src/rel/path', '/dst/abs/path')));
         });
     });
 });

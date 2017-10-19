@@ -3,9 +3,9 @@
 const _ = require('lodash');
 
 const SpecificSuiteRunner = require('../../lib/runner/specific-suites-runner');
-const mkDummyCollection = require('../utils').mkDummyCollection;
+const mkDummyCollection = require('../test-utils').mkDummyCollection;
 
-describe('SpecificSuiteRunner', () => {
+describe('lib/runner/specific-suites-runner', () => {
     const sandbox = sinon.sandbox.create();
 
     afterEach(() => sandbox.restore());

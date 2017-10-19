@@ -2,7 +2,7 @@
 
 const EventSource = require('../lib/event-source');
 
-describe('EventSource', () => {
+describe('lib/event-source', () => {
     beforeEach(() => {
         this.source = new EventSource();
         this.connection = {
