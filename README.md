@@ -42,6 +42,8 @@ only in that files.
 * `--auto-run`, `-a` - run gemini immediately (without pressing `run` button).
 * `--set`, `-s` - run set specified in config.
 * `--no-open`, `-O` - not to open a browser window after starting the server.
+* `--reuse` - filepath to gemini tests results directory OR url to tar.gz archive to reuse
+* `--reuse-request-timeout` - request timeout in milliseconds (for downloading tar.gz archive to reuse)
 
 You can also override config file options with environment variables. Use `gemini`
 [documentation](https://github.com/gemini-testing/gemini#configuration) for details.

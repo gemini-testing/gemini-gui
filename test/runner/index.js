@@ -3,9 +3,9 @@
 const RunnerFactory = require('../../lib/runner');
 const AllSuitesRunner = require('../../lib/runner/all-suites-runner');
 const SpecificSuitesRunner = require('../../lib/runner/specific-suites-runner');
-const mkDummyCollection = require('../utils').mkDummyCollection;
+const mkDummyCollection = require('../test-utils').mkDummyCollection;
 
-describe('RunnerFactory', () => {
+describe('lib/runner/index', () => {
     const sandbox = sinon.sandbox.create();
 
     afterEach(() => sandbox.restore());

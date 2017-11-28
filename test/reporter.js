@@ -5,7 +5,7 @@ const Promise = require('bluebird');
 const App = require('../lib/app');
 const reporter = require('../lib/reporter');
 
-describe('reporter', () => {
+describe('lib/reporter', () => {
     beforeEach(() => {
         this.app = sinon.createStubInstance(App);
     });
