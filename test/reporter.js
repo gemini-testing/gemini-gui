@@ -71,11 +71,11 @@ describe('lib/reporter', () => {
 
     itShouldProxyEvent('end', {});
 
-    it('should replace paths with URLs if endTest emitted with equal images', () => {
+    it('should replace paths with URLs if testResult emitted with equal images', () => {
         this.app.refPathToURL.withArgs('ref.png', 'browser').returns('/ref/browser/image.png');
         this.app.currentPathToURL.withArgs('curr.png').returns('/curr/image.png');
 
-        emitToReporter('endTest', {
+        emitToReporter('testResult', {
             suite: {id: 1, name: 'test', file: '/file'},
             state: {name: 'state'},
             browserId: 'browser',
@@ -85,7 +85,7 @@ describe('lib/reporter', () => {
             currentPath: 'curr.png'
         }, this.app);
 
-        assert.calledWith(this.app.sendClientEvent, 'endTest', {
+        assert.calledWith(this.app.sendClientEvent, 'testResult', {
             suite: {id: 1, name: 'test', file: '/file'},
             state: {
                 name: 'state',
@@ -110,7 +110,7 @@ describe('lib/reporter', () => {
             currentPath: 'curr.png'
         };
 
-        emitToReporter('endTest', failureData, this.app);
+        emitToReporter('testResult', failureData, this.app);
 
         assert.calledWith(this.app.buildDiff, failureData);
     });
@@ -118,7 +118,7 @@ describe('lib/reporter', () => {
     it('should register failure', () => {
         this.app.buildDiff.returns(Promise.resolve());
 
-        emitToReporter('endTest', {
+        emitToReporter('testResult', {
             suite: {id: 1, name: 'test', file: '/file'},
             state: {name: 'state'},
             browserId: 'browser',
@@ -145,7 +145,7 @@ describe('lib/reporter', () => {
         this.app.currentPathToURL.withArgs('curr.png').returns('/curr/image.png');
         this.app.buildDiff.returns(Promise.resolve('/diff/image.png'));
 
-        emitToReporter('endTest', {
+        emitToReporter('testResult', {
             suite: {id: 1, name: 'test', file: '/file'},
             state: {name: 'state'},
             browserId: 'browser',
@@ -156,7 +156,7 @@ describe('lib/reporter', () => {
         }, this.app);
 
         return Promise.resolve().then(() => {
-            assert.calledWith(this.app.sendClientEvent, 'endTest', {
+            assert.calledWith(this.app.sendClientEvent, 'testResult', {
                 suite: {id: 1, name: 'test', file: '/file'},
                 state: {
                     name: 'state',
