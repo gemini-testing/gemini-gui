@@ -172,9 +172,12 @@ html, body {
     color: #ccc;
 }
 
-.report_showOnlyErrors .section_status_success,
-.report_showOnlyErrors .section_status_skipped {
+.report_showOnlyErrors .section {
     display: none;
+}
+
+.report_showOnlyErrors .section_status_fail {
+    display: block;
 }
 
 .section__title:hover {
