@@ -77,6 +77,10 @@ html, body {
     border: 1px solid #ccc;
     border-radius: 2px;
 }
+.image-box {
+    display: flex;
+    flex-flow: row wrap;
+}
 
 .image-box, .error-box{
     background: #c9c9c9;
@@ -87,8 +91,16 @@ html, body {
 
 .image-box__image {
     padding:  0 5px;
-    display: inline-block;
+    display: block;
     vertical-align: top;
+    flex-basis: 33.333%;
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+
+.images_scaled .image-box__image img {
+    max-width: 100%;
+    height: auto;
 }
 
 .image-box__replace {
@@ -205,6 +217,7 @@ html, body {
     background: #C9C9C9;
     position: -webkit-sticky;
     position: sticky;
+    width: 100%;
     top: 0;
 }
 
