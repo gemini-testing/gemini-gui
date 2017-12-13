@@ -1,11 +1,17 @@
 'use strict';
 
-const Error = require('../lib/utils').Error;
+const ExtendableError = require('../lib/utils').ExtendableError;
 
 describe('lib/utils', () => {
     describe('Error', () => {
+        it('should be an Error inheritor', () => {
+            const error = new ExtendableError('msg');
+
+            assert.isTrue(error instanceof Error);
+        });
+
         it('should create regular error if only message specified', () => {
-            const error = new Error('msg');
+            const error = new ExtendableError('msg');
 
             assert.equal(error.message, 'msg');
             assert.match(error.stack, /^Error: msg\n/);
@@ -13,7 +19,7 @@ describe('lib/utils', () => {
         });
 
         it('should create regular error if cause exception has no stack', () => {
-            const error = new Error('msg', {});
+            const error = new ExtendableError('msg', {});
 
             assert.equal(error.message, 'msg');
             assert.match(error.stack, /^Error: msg\n/);
@@ -21,7 +27,7 @@ describe('lib/utils', () => {
         });
 
         it('should create error with extended stack if cause exception has stack', () => {
-            const error = new Error('msg', {stack: 'Custom stack'});
+            const error = new ExtendableError('msg', {stack: 'Custom stack'});
 
             assert.equal(error.message, 'msg');
             assert.match(error.stack, /^Error: msg\n/);
