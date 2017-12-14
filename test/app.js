@@ -267,14 +267,14 @@ describe('lib/app', () => {
             sandbox.stub(path, 'resolve');
         });
 
-        it('should reject if copying failed', () => {
-            fs.copyAsync.returns(Promise.reject());
-
+        it('should resolve if image was copied successfully', () => {
             return app.initialize()
-                .then(() => assert.isRejected(app.copyImage('src/rel/path', '/dst/abs/path')));
+                .then(() => assert.isFulfilled(app.copyImage('src/rel/path', '/dst/abs/path')));
         });
 
-        it('should resolve if image was copied successfully', () => {
+        it('should still resolve if copying failed', () => {
+            fs.copyAsync.returns(Promise.reject());
+
             return app.initialize()
                 .then(() => assert.isFulfilled(app.copyImage('src/rel/path', '/dst/abs/path')));
         });
