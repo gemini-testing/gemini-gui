@@ -68,10 +68,10 @@ describe('lib/reuse-loader', () => {
         const loadReuseData = requireReuseDataFunc({largeDownload: largeDownloadMock});
         stubModules();
 
-        return loadReuseData('url', 2000)
+        return loadReuseData('url')
             .then(() => {
                 assert.calledOnce(largeDownloadMock);
-                assert.calledWith(largeDownloadMock, sinon.match({link: 'url', timeout: 2000}));
+                assert.calledWith(largeDownloadMock, sinon.match({link: 'url'}));
             });
     });
 
@@ -80,7 +80,7 @@ describe('lib/reuse-loader', () => {
         const loadReuseData = requireReuseDataFunc({largeDownload: largeDownloadMock});
         stubModules();
 
-        return loadReuseData('url', 2000)
+        return loadReuseData('url')
             .then(
                 () => assert.fail('should reject'),
                 (err) => {
@@ -97,7 +97,7 @@ describe('lib/reuse-loader', () => {
         const loadReuseData = requireReuseDataFunc({decompress: decompressMock});
         stubModules();
 
-        return loadReuseData('url', 2000)
+        return loadReuseData('url')
             .then(() => assert.calledOnce(decompressMock));
     });
 
@@ -106,7 +106,7 @@ describe('lib/reuse-loader', () => {
         const loadReuseData = requireReuseDataFunc({decompress: decompressMock});
         stubModules();
 
-        return loadReuseData('url', 2000)
+        return loadReuseData('url')
             .then(
                 () => assert.fail('should reject'),
                 (err) => {
@@ -124,7 +124,7 @@ describe('lib/reuse-loader', () => {
         path.resolve.withArgs('/tempdir', 'r-dir').returns('/temp/r-dir');
         fs.statSync.withArgs('/temp/r-dir').returns({isDirectory: () => true});
 
-        return loadReuseData('url', 2000)
+        return loadReuseData('url')
             .then((reuseData) => {
                 assert.isDefined(reuseData);
                 assert.equal(reuseData.report, '/temp/r-dir');
