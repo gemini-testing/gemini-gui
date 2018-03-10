@@ -9,9 +9,7 @@ describe('lib/tests-model', () => {
     let app;
 
     const mkReuseBrowserResult_ = (browser, status, data) => {
-        const statusObj = {};
-        statusObj[status] = true;
-        return {name: browser, result: Object.assign({}, data, statusObj)};
+        return {name: browser, result: Object.assign({status}, data)};
     };
 
     const mkReuseState_ = (suite, state, browsers) => {
