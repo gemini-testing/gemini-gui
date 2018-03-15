@@ -8,15 +8,15 @@ describe('lib/tests-model', () => {
 
     let app;
 
-    const mkReuseBrowserResult_ = (browser, status, data) => {
-        return {name: browser, result: Object.assign({status}, data)};
+    const mkReuseBrowserResult_ = (browser, status, data, retries) => {
+        return {name: browser, result: Object.assign({status}, data), retries};
     };
 
     const mkReuseState_ = (suite, state, browsers) => {
         return {
             name: state,
             suitePath: [suite, state],
-            browsers: browsers.map((b) => mkReuseBrowserResult_(b.browser, b.status, b.ext))
+            browsers: browsers.map((b) => mkReuseBrowserResult_(b.browser, b.status, b.ext, b.retries))
         };
     };
 
@@ -442,6 +442,45 @@ describe('lib/tests-model', () => {
                         metaInfo: JSON.stringify({sessionId: 'session-id'}),
                         diffPath: 'diff/rel'
                     }}
+                ]}
+            ]}])
+                .then((tests) => {
+                    const test = tests.find({
+                        suite: {name: 'suite1', path: ['suite1']},
+                        state: {name: 'state1'},
+                        browserId: 'bro'
+                    });
+
+                    assert.isNotNull(test);
+                    assert.equal(test.diffURL, 'diff url');
+                });
+        });
+
+        it('should use data from retries if on image in result', () => {
+            app.diffDir = 'diff_dir';
+            app.createDiffPathFor.withArgs().returns('/reused/image/path');
+            app.diffPathToURL.withArgs('/reused/image/path').returns('diff url');
+
+            return createTests(app, [{
+                suite: 'suite1',
+                states: [{name: 'state1', ext: {metaInfo: {key: 'state-value'}}}],
+                browsers: ['bro']
+            }], [{suite: 'suite1', states: [
+                {name: 'state1', browsers: [
+                    {
+                        browser: 'bro',
+                        status: 'fail',
+                        ext: {
+                            metaInfo: 'fiasco'
+                        },
+                        retries: [
+                            {
+                                status: 'fail',
+                                metaInfo: JSON.stringify({sessionId: 'session-id'}),
+                                diffPath: 'diff/rel'
+                            }
+                        ]
+                    }
                 ]}
             ]}])
                 .then((tests) => {
