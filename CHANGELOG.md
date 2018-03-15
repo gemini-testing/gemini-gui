@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.3.2 - 2018-03-15
+
+* Fixed bug: use last successful screenshot from retries if no image in result
+
 ## 4.7.0 - 2017-05-25
 
 * Added option `--no-open` for not to open a browser window after starting the server

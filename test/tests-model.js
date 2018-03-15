@@ -456,7 +456,7 @@ describe('lib/tests-model', () => {
                 });
         });
 
-        it('should use data from retries if on image in result', () => {
+        it('should use data from retries if no image in result', () => {
             app.diffDir = 'diff_dir';
             app.createDiffPathFor.withArgs().returns('/reused/image/path');
             app.diffPathToURL.withArgs('/reused/image/path').returns('diff url');
