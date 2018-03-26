@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.3.3 - 2018-03-15
+
+* Fix: reuse should work correctly for successfully passed tests
+
 ## 5.3.2 - 2018-03-15
 
 * Fixed bug: use last successful screenshot from retries if no image in result
