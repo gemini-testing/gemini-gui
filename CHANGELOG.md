@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.0 - 2018-03-30
+
+* `--reuse` option expect archive with report files. In v5.3.3 this option expect archive with report directory.
+
 ## 5.3.3 - 2018-03-15
 
 * Fix: reuse should work correctly for successfully passed tests
