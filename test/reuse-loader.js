@@ -22,6 +22,9 @@ describe('lib/reuse-loader', () => {
 
         return proxyquire('../lib/reuse-loader', {
             'large-download': opts.largeDownload || mkLargeDownload(),
+            'temp': {
+                track: () => ({mkdirSync: sinon.stub().returns('/tmp')})
+            },
             './utils': {
                 decompress: opts.decompress || sinon.stub().returns(Promise.resolve()),
                 Error: utils.Error
@@ -116,18 +119,14 @@ describe('lib/reuse-loader', () => {
             );
     });
 
-    it('should choose folder from temp dir for reuse', () => {
+    it('should use temp dir for reuse', () => {
         const loadReuseData = requireReuseDataFunc();
         stubModules();
-        temp.mkdirSync.returns('/tempdir');
-        fs.readdirSync.returns(['r-archive', 'r-dir']);
-        path.resolve.withArgs('/tempdir', 'r-dir').returns('/temp/r-dir');
-        fs.statSync.withArgs('/temp/r-dir').returns({isDirectory: () => true});
 
         return loadReuseData('url')
             .then((reuseData) => {
                 assert.isDefined(reuseData);
-                assert.equal(reuseData.report, '/temp/r-dir');
+                assert.equal(reuseData.report, '/tmp');
             });
     });
 });
