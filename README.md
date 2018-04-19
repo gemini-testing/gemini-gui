@@ -2,6 +2,33 @@
 
 [![Build Status](https://travis-ci.org/gemini-testing/gemini-gui.svg)](https://travis-ci.org/gemini-testing/gemini-gui)
 
+## WARNING
+
+This package is deprecated and no longer supported. 
+Use [html-reporter](https://github.com/gemini-testing/html-reporter) plugin and `gemini gui` command instead.
+
+### How to migrate
+
+To be able to use `GUI` on a project you must have [gemini](https://github.com/gemini-testing/gemini) installed locally in the project.
+
+1. Install [html-reporter](https://github.com/gemini-testing/html-reporter) plugin.
+
+2. [Add html-reporter plugin](https://github.com/gemini-testing/html-reporter#gemini-usage) to your gemini config file.
+
+3. Now you can use `GUI` by running `gemini gui` in the project root:
+
+   ```
+   ./node_modules/.bin/gemini gui
+   ```
+
+4. To see available options of `gemini gui` command, run in the project root:
+
+   ```
+   ./node_modules/.bin/gemini gui --help
+   ```
+
+## What is Gemini GUI? 
+
 GUI for [gemini](https://github.com/gemini-testing/gemini) utility.
 
 ![screenshot](assets/screenshot.png "Screenshot")
