@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.1 - 2018-04-19
+
+* Added deprecation warning: "This package is deprecated. Use html-reporter instead".
+
 ## 6.0.0 - 2018-03-30
 
 * `--reuse` option expect archive with report files. In v5.3.3 this option expect archive with report directory.
